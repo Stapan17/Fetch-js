@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> API </title>
+</head>
+
+<body>
+    <h1>Let us started with this simple API</h1>
+    <button id="submit"> Submit </button>
+
+
+    <div id="showData"></div>
+
+    <script>
+        document.getElementById('submit').addEventListener('click', getData);
+
+        function getData() {
+            fetch('https://jsonplaceholder.typicode.com/todos/')
+                .then(reponse => reponse.json())
+                .then(todos => {
+                    // users.forEach(function (user) {
+                    let output = `<h1> This is answer  </h1>` + `<ul>`
+                    todos.forEach(function (todo) {
+                        output += `
+                        <li>
+                            ${todo.completed}
+                        </li>
+                        `;
+                    });
+                    output += `</ul>`
+                    document.getElementById('showData').innerHTML = output
+                });
+
+        }
+    </script>
+</body>
+
+</html>
